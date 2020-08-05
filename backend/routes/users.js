@@ -63,25 +63,25 @@ Router.post("/", async (req, res) => {
             [req.body].forEach(i => {
 
                 if(i.name != null && i.email != null && i.password != null) {
-        
+
                     conn.db("api").collection("users").insertOne({
                         name: req.body.name,
                         email: req.body.email,
                         password: cryptoJS(req.body.password).toString()
                     });
-        
+
                     res.send({
                         message: "User successfully registered",
                         status: 200
                     });
-        
+
                 } else {
                     res.send({
                         message: "One or more fields are incorrect",
                         status: 406
                     });
                 }
-        
+
             });
 
         }
