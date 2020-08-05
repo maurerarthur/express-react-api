@@ -20,6 +20,29 @@ Router.get("/", async (req, res) => {
 
 });
 
+Router.get("/:email", async (req, res) => {
+
+    const conn = await Connection.Mongo();
+
+    conn.db("api").collection("users").findOne({ email: req.params.email }, (err, result) => {
+
+        if(err) {
+            throw err;
+        }
+
+        if(result) {
+            res.send(result);
+        } else {
+            res.send({
+                message: `No user with the email ${req.params.email} was found`,
+                status: 404
+            });
+        }
+
+    });
+
+});
+
 Router.post("/", async (req, res) => {
 
     const conn = await Connection.Mongo();
