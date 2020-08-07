@@ -78,7 +78,7 @@ Router.post("/", async (req, res) => {
                 } else {
                     res.send({
                         message: "One or more fields are incorrect",
-                        status: 406
+                        status: 400
                     });
                 }
 
