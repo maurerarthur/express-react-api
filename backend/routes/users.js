@@ -8,7 +8,7 @@ Router.get("/", async (req, res) => {
 
     const conn = await Connection.Mongo();
 
-    conn.db("api").collection("users").find({}).toArray((err, result) => {
+    conn.db("api").collection("users").find({}).project({ password: 0 }).toArray((err, result) => {
 
         if(err) {
             throw err;
@@ -24,7 +24,7 @@ Router.get("/:email", async (req, res) => {
 
     const conn = await Connection.Mongo();
 
-    conn.db("api").collection("users").findOne({ email: req.params.email }, (err, result) => {
+    conn.db("api").collection("users").find({ email: req.params.email }).project({ password: 0 }).toArray((err, result) => {
 
         if(err) {
             throw err;
