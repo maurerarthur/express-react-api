@@ -30,7 +30,7 @@ Router.get("/:email", async (req, res) => {
             throw err;
         }
 
-        if(result) {
+        if(result.length > 0) {
             res.send(result);
         } else {
             res.send({
