@@ -104,12 +104,12 @@ Router.delete("/", async (req, res) => {
             res.send({
                 message: `${req.body.email} has been deleted`,
                 status: 200
-            })
+            });
         } else {
             res.send({
                 message: `${req.body.email} was not found`,
                 status: 404
-            })
+            });
         }
 
     });
