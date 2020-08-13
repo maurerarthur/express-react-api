@@ -90,4 +90,30 @@ Router.post("/", async (req, res) => {
 
 });
 
+Router.delete("/", async (req, res) => {
+
+    const conn = await Connection.Mongo();
+
+    conn.db("api").collection("users").deleteOne({ email: req.body.email }, (err, result) => {
+
+        if(err) {
+            throw err;
+        }
+
+        if(result.deletedCount > 0) {
+            res.send({
+                message: `${req.body.email} has been deleted`,
+                status: 200
+            })
+        } else {
+            res.send({
+                message: `${req.body.email} was not found`,
+                status: 404
+            })
+        }
+
+    });
+
+});
+
 module.exports = Router;
