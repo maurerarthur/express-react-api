@@ -9,13 +9,7 @@ Router.get("/", async (req, res) => {
     const conn = await Connection.Mongo();
 
     conn.db("api").collection("users").find({}).project({ password: 0 }).toArray((err, result) => {
-
-        if(err) {
-            throw err;
-        }
-
         res.send(result);
-
     });
 
 });
@@ -25,10 +19,6 @@ Router.get("/:email", async (req, res) => {
     const conn = await Connection.Mongo();
 
     conn.db("api").collection("users").find({ email: req.params.email }).project({ password: 0 }).toArray((err, result) => {
-
-        if(err) {
-            throw err;
-        }
 
         if(result.length > 0) {
             res.send(result);
@@ -48,10 +38,6 @@ Router.post("/", async (req, res) => {
     const conn = await Connection.Mongo();
 
     conn.db("api").collection("users").findOne({ email: req.body.email }, (err, result) => {
-
-        if(err) {
-            throw err;
-        }
 
         if(result) {
             res.send({
@@ -95,10 +81,6 @@ Router.delete("/", async (req, res) => {
     const conn = await Connection.Mongo();
 
     conn.db("api").collection("users").deleteOne({ email: req.body.email }, (err, result) => {
-
-        if(err) {
-            throw err;
-        }
 
         if(result.deletedCount > 0) {
             res.send({
