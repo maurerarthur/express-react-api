@@ -76,6 +76,42 @@ Router.put("/", async (req, res) => {
 
 });
 
+Router.patch("/", async (req, res) => {
+
+    const conn = await Connection.Mongo();
+
+    conn.db("api").collection("users").find({ email: req.body.email }, (err, result) => {
+
+        result.count().then(count => {
+            if(count == 1) {
+                conn.db("api").collection("users").updateOne({ email: req.body.email }, {
+                    $set: {
+                        name: req.body.name,
+                        email: req.body.email
+                    }
+                }).then(() => {
+                    res.send({
+                        message: `${req.body.email} was successfully updated`,
+                        status: 200
+                    });
+                }).catch(() => {
+                    res.send({
+                        message: "Something went wrong",
+                        status: 400
+                    });
+                });
+            } else {
+                res.send({
+                    message: `${req.body.email} was not found`,
+                    status: 400
+                });
+            }
+        });
+
+    });
+
+});
+
 Router.delete("/", async (req, res) => {
 
     const conn = await Connection.Mongo();
