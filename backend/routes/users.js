@@ -33,7 +33,7 @@ Router.get("/:email", async (req, res) => {
 
 });
 
-Router.post("/", async (req, res) => {
+Router.put("/", async (req, res) => {
 
     const conn = await Connection.Mongo();
 
