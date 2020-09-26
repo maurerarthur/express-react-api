@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
-import Dashboard from './dashboard/index.js';
+import CreateAccount from './users/createAccount.js';
 
 export default function App() {
 
@@ -11,7 +11,7 @@ export default function App() {
 
 	return(
 		<div className="App w-100 h-100">
-			<Dashboard />
+			<CreateAccount />
 		</div>
   	);
 
