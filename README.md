@@ -16,3 +16,9 @@ nodemon start
 ```
 npm start
 ```
+
+Some times npm start won't work, so the project can be run with the following terminal command:
+
+```
+node node_modules/react-scripts/scripts/start.js
+```
