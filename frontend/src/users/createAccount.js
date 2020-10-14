@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-//import { useRoutes, navigate, A } from 'hookrouter';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
-import Routes from '../Routes.js';
 import Axios from 'axios';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -36,14 +33,12 @@ export default function CreateAccount() {
 
     }
 
-    //useRoutes(Routes);
-
     return(
 
         isSignedUp ?
 
         <div class="alert alert-primary" role="alert">
-            Account successfully created! Proceed to <Router><Link to="/signin">Sign In</Link></Router>
+            Account successfully created! Proceed to Sign In
         </div>
 
         :
